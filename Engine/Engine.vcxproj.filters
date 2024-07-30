@@ -89,9 +89,6 @@
     <ClInclude Include="Source\Audio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Header.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Source\Font.h">
       <Filter>Header Files</Filter>
     </ClInclude>

@@ -1,28 +1,31 @@
 #pragma once
 
-#include "Renderer.h"
-#include "Input.h"
-#include "Audio.h"
-
+// ** core **
 #include "ETime.h"
 
-#include "Vector2.h"
-#include "Random.h"
-#include "MathUtils.h"
-
+// ** systems **
+// renderer
+#include "Renderer.h"
 #include "Particle.h"
 #include "ParticleSystem.h"
 #include "Text.h"
 #include "Font.h"
-
 #include "Model.h"
+// input
+#include "Input.h"
+// audio
+#include "Audio.h"
+
+// ** math **
+#include "Vector2.h"
+#include "Random.h"
+#include "MathUtils.h"
 #include "Transform.h"
 
 #include <fmod.hpp>
 #include <SDL.h>
 #include <memory>
-
-#define RENDERER g_engine.GetRenderer()
+#include <cassert>
 
 class Engine
 {
@@ -55,8 +58,4 @@ private:
 
 	std::unique_ptr<ParticleSystem> m_particleSystem;
 };
-
-
-
-extern Engine g_engine;
 
