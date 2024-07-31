@@ -1,26 +1,33 @@
 #pragma once
 
 // ** core **
-#include "ETime.h"
+#include "Core/ETime.h"
+#include "Core/EAssert.h"
+#include "Core/EFile.h"
 
 // ** systems **
 // renderer
-#include "Renderer.h"
-#include "Particle.h"
-#include "ParticleSystem.h"
-#include "Text.h"
-#include "Font.h"
-#include "Model.h"
+#include "Renderer/Renderer.h"
+#include "Renderer/Particle.h"
+#include "Renderer/ParticleSystem.h"
+#include "Renderer/Text.h"
+#include "Renderer/Font.h"
+#include "Renderer/Model.h"
 // input
-#include "Input.h"
+#include "Input/Input.h"
 // audio
-#include "Audio.h"
+#include "Audio/Audio.h"
 
 // ** math **
-#include "Vector2.h"
-#include "Random.h"
-#include "MathUtils.h"
-#include "Transform.h"
+#include "Math/Random.h"
+#include "Math/MathUtils.h"
+#include "Math/Vector2.h"
+#include "Math/Transform.h"
+
+// ** framework **
+#include "Framework/Actor.h"
+#include "Framework/Scene.h"
+#include "Framework/Game.h"
 
 #include <fmod.hpp>
 #include <SDL.h>
@@ -52,10 +59,9 @@ private:
 
 	std::unique_ptr<Time>		m_time;
 
-	std::unique_ptr<Renderer>	m_renderer;
-	std::unique_ptr<Input>		m_input;
-	std::unique_ptr<Audio>		m_audio;
-
+	std::unique_ptr<Renderer>		m_renderer;
+	std::unique_ptr<Input>			m_input;
+	std::unique_ptr<Audio>			m_audio;
 	std::unique_ptr<ParticleSystem> m_particleSystem;
 };
 

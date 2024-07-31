@@ -1,6 +1,6 @@
 #pragma once
-#include "Actor.h"
-#include "Color.h"
+#include "../Framework/Actor.h"
+#include "../Math/Color.h"
 
 class Emitter : public Actor
 {

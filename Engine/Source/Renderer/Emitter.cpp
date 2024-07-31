@@ -1,7 +1,6 @@
 #include "Emitter.h"
 #include "Particle.h"
-#include "Random.h"
-#include "Engine.h"
+#include "../Math/Random.h"
 
 void Emitter::Update(float dt)
 {
