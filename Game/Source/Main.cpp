@@ -22,8 +22,10 @@ int main(int argc, char* argv[])
 
 	// create texture, using shared ptr so texture can be shared
 	res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("beast.png", engine->GetRenderer());
-	//res_t<Font> font = 
-
+	res_t<Font> font = ResourceManager::Instance().Get<Font>("arcadeclassic.ttf", 12);
+	std::unique_ptr<Text> text = std::make_unique<Text>(font);
+	text->Create(engine->GetRenderer(), "Hello!", { 1, 1, 0, 1 });
+	
 	while (!engine->IsQuit())
 	{
 		engine->Update();
@@ -31,7 +33,8 @@ int main(int argc, char* argv[])
 		engine->GetRenderer().SetColor(0, 0, 0, 0);
 		engine->GetRenderer().BeginFrame();
 
-		engine->GetRenderer().DrawTexture(texture.get(), randomf(800), randomf(600), randomf(360));
+		text->Draw(engine->GetRenderer(), 200, 200);
+		engine->GetRenderer().DrawTexture(texture.get(), 50, 50, 0);
 
 		engine->GetRenderer().EndFrame();
 	}
