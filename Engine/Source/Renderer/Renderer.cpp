@@ -1,4 +1,6 @@
 #include "Renderer.h"
+#include "Texture.h"
+#include "../Math/Vector2.h"
 #include <iostream>
 
 bool Renderer::Initialize()
@@ -15,6 +17,20 @@ bool Renderer::Initialize()
 		std::cerr << "Error initializing SDL TTF: " << SDL_GetError() << std::endl;
 		return false;
 	}
+	// initialize Image SDL, supports BMP, JPG, and PNG
+	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) == 0)
+	{
+		std::cerr << "Error initializing SDL Image: " << SDL_GetError() << std::endl;
+		return false;
+
+	}
+
+	// initialize Image SDL
+	if (IMG_Init(IMG_INIT_JPG | IMG_INIT_PNG) == 0)
+	{
+		std::cerr << "Error initializing SDL Image: " << SDL_GetError() << std::endl;
+		return false;
+	}
 
 	return true;
 }
@@ -24,6 +40,7 @@ void Renderer::Shutdown()
 	SDL_DestroyRenderer(m_renderer);
 	SDL_DestroyWindow(m_window);
 	TTF_Quit();
+	IMG_Quit();
 }
 
 bool Renderer::CreateWindow(std::string title, int width, int height)
@@ -101,5 +118,19 @@ void Renderer::DrawRect(float x, float y, float w, float h)
 {
 	SDL_FRect rect{ x - w / 2, y - h / 2, w, h };
 	SDL_RenderFillRectF(m_renderer, &rect);
+}
+
+void Renderer::DrawTexture(Texture* texture, float x, float y, float angle)
+{
+	Vector2 size = texture->GetSize();
+
+	SDL_FRect destRect;
+	destRect.x = x;
+	destRect.y = y;
+	destRect.w = size.x;
+	destRect.h = size.y;
+
+	// https://wiki.libsdl.org/SDL2/SDL_RenderCopyExF
+	SDL_RenderCopyExF(m_renderer, texture->m_texture, NULL, &destRect, angle, NULL, SDL_FLIP_NONE);
 }
 
