@@ -42,16 +42,6 @@ int main(int argc, char* argv[])
 	std::cout << position.x << " " << position.y << std::endl;
 	std::cout << color.r << " " << color.g << " " << color.b << " " << color.a << std::endl;
 
-	/*
-	int age;
-	bool isAwake;
-
-	READ_DATA(document, age);
-	READ_DATA(document, name);
-	READ_DATA(document, isAwake);
-
-	std::cout << name << " " << age << " " << isAwake << std::endl;
-	*/
 	{
 		// create texture, using shared ptr so texture can be shared
 		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("beast.png", engine->GetRenderer());
