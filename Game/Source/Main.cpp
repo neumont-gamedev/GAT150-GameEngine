@@ -12,14 +12,37 @@ int main(int argc, char* argv[])
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << std::endl;
 
-	std::string s;
-	File::ReadFile("text.txt", s);
-	std::cout << s;
+	// !! this code is not neccessary, it just shows the contents of the file !!
+	std::string buffer;
+	File::ReadFile("json.txt", buffer);
+	// show the contents of the json file
+	std::cout << buffer << std::endl;
 
+	// create json document from the json file contents
 	rapidjson::Document document;
-	Json::Load("text.txt", document);
+	Json::Load("json.txt", document);
 
+	// read the data from the json
 	std::string name;
+	int age;
+	float speed;
+	bool isAwake;
+	Vector2 position;
+	Color color;
+
+	READ_DATA(document, name);
+	READ_DATA(document, age);
+	READ_DATA(document, speed);
+	READ_DATA(document, isAwake);
+	READ_DATA(document, position);
+	READ_DATA(document, color);
+
+	// show the data
+	std::cout << name << " " << age << " " << speed << " " << isAwake << std::endl;
+	std::cout << position.x << " " << position.y << std::endl;
+	std::cout << color.r << " " << color.g << " " << color.b << " " << color.a << std::endl;
+
+	/*
 	int age;
 	bool isAwake;
 
@@ -28,7 +51,7 @@ int main(int argc, char* argv[])
 	READ_DATA(document, isAwake);
 
 	std::cout << name << " " << age << " " << isAwake << std::endl;
-
+	*/
 	{
 		// create texture, using shared ptr so texture can be shared
 		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("beast.png", engine->GetRenderer());
