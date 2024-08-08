@@ -4,14 +4,6 @@
 #include <cstdlib>
 #include <vector>
 
-void f()
-{
-	static int i = 5;
-	i++;
-	std::cout << i << std::endl;
-}
-
-
 int main(int argc, char* argv[])
 {
 	std::unique_ptr<Engine> engine = std::make_unique<Engine>();
@@ -19,6 +11,24 @@ int main(int argc, char* argv[])
 	
 	File::SetFilePath("Assets");
 	std::cout << File::GetFilePath() << std::endl;
+
+	std::string s;
+	File::ReadFile("text.txt", s);
+	std::cout << s;
+
+	rapidjson::Document document;
+	Json::Load("text.txt", document);
+
+	std::string name;
+	int age;
+	bool isAwake;
+
+	READ_DATA(document, age);
+	READ_DATA(document, name);
+	READ_DATA(document, isAwake);
+
+	std::cout << name << " " << age << " " << isAwake << std::endl;
+
 	{
 		// create texture, using shared ptr so texture can be shared
 		res_t<Texture> texture = ResourceManager::Instance().Get<Texture>("beast.png", engine->GetRenderer());

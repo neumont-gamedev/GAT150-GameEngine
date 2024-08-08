@@ -47,7 +47,6 @@ protected:
 	Scene* m_scene{ nullptr };
 
 	std::vector<std::unique_ptr<Component>> m_components;
-
 };
 
 
